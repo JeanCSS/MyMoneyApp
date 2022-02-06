@@ -16,7 +16,7 @@ class TabHeader extends Component {
     return (
       <If condicao={show}>
         <li className="nav-item"> 
-          <a className={`nav-link ${selected ? 'active' : ''}`} href='javascript:;' data-toggle="tab"data-target={this.props.target} onClick={() => {this.props.setTab(this.props.target)}}>
+          <a className={`nav-link ${selected ? 'active' : ''}`} href='' data-toggle="tab"data-target={this.props.target} onClick={e => {this.props.setTab(this.props.target)}}>
             <i className={this.props.icon}></i> {`  ${this.props.label}`}
           </a>
         </li>

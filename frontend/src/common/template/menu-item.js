@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const MenuItem = (props) => { 
   const { href, icon, badge, children } = props.data; 
   const selected = props.selected === props.titulo;
-    console.log("MenuItem:", props);
+    //console.log("MenuItem:", props);
     return (
       <li className="nav-item">
         <Link to={href} className={`nav-link ${selected ? 'nav-link active' : 'nav-link'}`} onClick={() => {props.onClick(props.titulo)}}>
@@ -18,7 +18,7 @@ const MenuItem = (props) => {
           { 
             children && Object.keys(children).map(child => {      //console.log('child: ', child)
               return( 
-                <ul className="nav nav-treeview"> 
+                <ul className="nav nav-treeview">
                   <MenuItem key={child} titulo={child} data={children[child]} selected={props.selected} onClick={props.onClick}/>
                 </ul>
               )  

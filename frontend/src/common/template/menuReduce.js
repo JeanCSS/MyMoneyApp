@@ -7,7 +7,7 @@ const  INITIAL_STATE = {
       "badge": "",
     },
     "Cadastro": {
-      href: "",
+      href: "#",
       icon: "nav-icon fas fa-edit",
       badge: "",
       children: {
@@ -19,6 +19,7 @@ const  INITIAL_STATE = {
       }
     },
     "Layout Options":{ 
+      href: "#",
       icon: "nav-icon fas fa-copy",
       badge: "badge badge-success right",
       children: {
@@ -50,7 +51,7 @@ export default (state = INITIAL_STATE, action) => {
         visible: action.payload
       }
     case "MENU_SELECTED":
-      console.log("MENU_SELECTED:", action.payload);
+      //console.log("MENU_SELECTED:", action.payload);
       return{
         ...state,
         selected: action.payload

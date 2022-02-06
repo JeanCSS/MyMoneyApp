@@ -10,7 +10,7 @@ export function showTab(...tabIds){
   const tabsToShow = {};
 
   tabIds.forEach(e => {tabsToShow[e] = true});
-  console.log('showTab ',tabsToShow);
+  //console.log('showTab ',tabsToShow);
   return {
     type: 'SHOW_TAB',
     payload: tabsToShow
