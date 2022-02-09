@@ -3,7 +3,7 @@ module.exports = {
 
     async index(request, response) {
         const { page = 1 } = request.query;
-        const { limit = 20 } = request.query;
+        const { limit = 5 } = request.query;
         const [count] = await connection('billingcycle').count();
         const billingcycles = await connection('billingcycle')
             .limit(limit)
@@ -12,7 +12,8 @@ module.exports = {
         response.header('X-Total-Count', count['count(*)']); 
         return response.json({
           billingcycles, 
-          count: count['count(*)'] / limit
+          count: count['count(*)'] / limit,
+          currentPage: page
         });
     },
     async create(req, res){ 

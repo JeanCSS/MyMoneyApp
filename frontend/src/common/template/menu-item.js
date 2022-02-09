@@ -18,8 +18,8 @@ const MenuItem = (props) => {
           { 
             children && Object.keys(children).map(child => {      //console.log('child: ', child)
               return( 
-                <ul className="nav nav-treeview">
-                  <MenuItem key={child} titulo={child} data={children[child]} selected={props.selected} onClick={props.onClick}/>
+                <ul className="nav nav-treeview" key={child}>
+                  <MenuItem titulo={child} data={children[child]} selected={props.selected} onClick={props.onClick}/>
                 </ul>
               )  
             })

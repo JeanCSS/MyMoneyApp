@@ -8,8 +8,10 @@ import TabsHeader from "../common/tab/tabsHeader";
 import TabHeader from "../common/tab/tabHeader";
 import TabsContent from "../common/tab/tabsContent";
 import TabContent from "../common/tab/tabContent";
-import Tabs from "../common/tab/tabs";
-import Lista from "../common/lista/lista";
+import Tabs from "../common/tab/tabs"; 
+import BillingCycleList from "./billingCycleList";
+import BillingCycleForm from "./billingCycleForm";
+
 import { getCycle, setCycle } from "./billingCycleAction";
 
 class BillingCycle extends Component{
@@ -18,10 +20,8 @@ class BillingCycle extends Component{
     date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     this.props.getCycle('page=1');
     ///this.props.setCycle({ "nome": "today", "mes": "fevereiro", "ano": "2020" });
-  }
- 
-  render(){
-    console.log("totalPages ", this.props.totalPages);
+  } 
+  render(){ 
     return (
       <div>
         <ContentHeader title="BillingCycle" small="Version 1.0.0"/>
@@ -35,10 +35,10 @@ class BillingCycle extends Component{
             </TabsHeader>
             <TabsContent>
               <TabContent label='Listar' icon='fas fa-bars' id='tabList'>
-                <Lista data={this.props} handlePageChange={this.props.getCycle}/>
+                <BillingCycleList data={this.props} handlePageChange={this.props.getCycle}/>
               </TabContent>
               <TabContent label='Incluir' icon='fas fa-plus' id='tabCreate'>
-                Mauris tincidunt mi at erat gravida, eget tristique urna bibendum. Mauris pharetra purus ut ligula tempor, et vulputate metus facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Maecenas sollicitudin, nisi a luctus interdum, nisl ligula placerat mi, quis posuere purus ligula eu lectus. Donec nunc tellus, elementum sit amet ultricies at, posuere nec nunc. Nunc euismod pellentesque diam.
+                <BillingCycleForm onSubmit={this.props.setCycle}/>
               </TabContent>
               <TabContent label='Alterar' icon='fas fa-pencil-alt' id='tabUpdate'>
                 Morbi turpis dolor, vulputate vitae felis non, tincidunt congue mauris. Phasellus volutpat augue id mi placerat mollis. Vivamus faucibus eu massa eget condimentum. Fusce nec hendrerit sem, ac tristique nulla. Integer vestibulum orci odio. Cras nec augue ipsum. Suspendisse ut velit condimentum, mattis urna a, malesuada nunc. Curabitur eleifend facilisis velit finibus tristique. Nam vulputate, eros non luctus efficitur, ipsum odio volutpat massa, sit amet sollicitudin est libero sed ipsum. Nulla lacinia, ex vitae gravida fermentum, lectus ipsum gravida arcu, id fermentum metus arcu vel metus. Curabitur eget sem eu risus tincidunt eleifend ac ornare magna.
@@ -54,6 +54,10 @@ class BillingCycle extends Component{
   }
 }
 
-const mapStateToProps = state => ({totalPages: state.cycles.totalPages, billing_cycles: state.cycles.billing_cycles});
+const mapStateToProps = state => ({
+  currentPage: state.cycles.currentPage,
+  totalPages: state.cycles.totalPages, 
+  billing_cycles: state.cycles.billing_cycles
+});
 const mapDispatchToProps = dispatch => bindActionCreators({ getCycle, setCycle }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycle);
