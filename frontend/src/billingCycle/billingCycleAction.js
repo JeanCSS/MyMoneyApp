@@ -1,4 +1,8 @@
-import api from '../service/api';
+import react from "react";
+import api from '../service/api'; 
+import { toastr } from "react-redux-toastr";
+import { reset } from "redux-form";
+import { setTab, showTab } from "../common/tab/tabAction";
 
 const getCycle = async (query) =>{ 
   const responce = await api.get(`/billingCycle?${query}`); 
@@ -11,12 +15,25 @@ const getCycle = async (query) =>{
   };
 } 
 
-const setCycle = async (value) => {  
-  const responce = await api.post('billingCycle', value)
-  return {
-    type: 'BILLING_CYCLES_SET',
-    payload: responce.data
-  };
+const setCycle = (value) => {   
+  return Dispatch => {
+    api.post('billingCycle', value)
+    .then(responce => {
+      toastr.success('Sucesso', 'Ciclo de pagamento criado com sucesso');
+
+      Dispatch([
+       reset('billingCycleForm'),
+       setTab("tabList"),
+       showTab("tabList", "tabCreate", "tabUpdate", "tabDelete"),
+       getCycle("page=1")
+      ]);
+      
+    })
+    .catch(error => {
+      console.log(error);
+      toastr.error('Erro', 'Erro ao criar ciclo de pagamento '+error);
+    });
+  } 
 } 
 
 export { getCycle, setCycle };
