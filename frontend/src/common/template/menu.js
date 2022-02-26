@@ -4,8 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setMenu } from "./menuActions";
 
-const Menu = (props) => { 
-    console.log("Menu:", props.selected);
+const Menu = (props) => {  
     return ( 
     
       <nav className="mt-2">

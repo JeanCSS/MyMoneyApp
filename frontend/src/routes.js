@@ -1,6 +1,8 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+
+import Messages from './common/template/msg/messages';
 import Header from './common/template/header';
 import SideBar from './common/template/sidebar'; 
 import Footer from './common/template/footer';
@@ -23,6 +25,7 @@ const Routes = () => {
                     </Switch>
                 </div>
                 <Footer/>
+                <Messages/>
             </div>    
         </BrowserRouter>
     );

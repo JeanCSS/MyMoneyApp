@@ -1,34 +1,26 @@
 import React, {Component} from "react";
-import {reduxForm, Field} from "redux-form";
-
+import {reduxForm, Field} from "redux-form"; 
+import labelAndInput from "../common/form/labelAndInput";
 class BillingCycleForm extends Component {
-  render() {
-    const {handleSubmit} = this.props;
+  render() { 
+    const {handleSubmit, readOnly} = this.props;
+    const {init} = this.props.data;
     return (
       <form role="form" onSubmit={handleSubmit}>
-        <div className="box-body">
-          <div>
-            <label htmlFor="nome">Nome</label>
-            <Field name="nome" component="input" type="text" placeholder="Nome" className="form-control" />
-          </div>
-          <div>
-            <label htmlFor="mes">Mes</label>
-            <Field name="mes" component="input" type="text" placeholder="Mes" className="form-control" />          
-          </div>
-          <div>
-            <label htmlFor="ano">Ano</label>
-            <Field name="ano" component="input" type="text" placeholder="Ano" className="form-control" />
+        <div className="box-body"> 
+          <div className="row">
+            <Field name="nome" label="Nome" component={labelAndInput} type="text" placeholder="Nome" cols="12 4" readOnly={readOnly}/>
+            <Field name="mes" label="Mes" component={labelAndInput} type="text" placeholder="Mes" cols="12 4" readOnly={readOnly}/>          
+            <Field name="ano" label="Ano" component={labelAndInput} type="number" placeholder="Ano" cols="12 4" readOnly={readOnly}/>
           </div>
         </div>
         <div className="box-footer">
-          <button type="submit" className="btn btn-primary">Submit</button>
+          <button type="submit" className={"btn btn-"+this.props.submitClass}>{this.props.submitLable}</button>
+          <button type="button" className="btn btn-default" onClick={() => init()}>Cancel</button>
         </div>
       </form>
     );
   }
 }
 
-const createReduxForm = reduxForm({form: 'billingCycleForm'});
-export default createReduxForm(BillingCycleForm);
-
-//export default reduxForm({form: 'billingCycleForm'})(BillingCycleForm);
+export default reduxForm({form: 'billingCycleForm', destroyOnUnmount: false})(BillingCycleForm); 

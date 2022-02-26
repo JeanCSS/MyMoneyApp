@@ -16,14 +16,35 @@ module.exports = {
           currentPage: page
         });
     },
+
     async create(req, res){ 
       const { nome, mes, ano } = req.body; 
 
-      const data = await connection('billingcycle').insert({ 
+      connection('billingcycle').insert({ 
         nome, mes, ano 
+      })
+      .then(data => { 
+        res.json({"ok": data});
+      })
+      .catch((err) => {  
+        res.status(400).json(err);
       });
+    },
+    
+    async update(req, res){ 
+      const { nome, mes, ano } = req.body; 
 
-      //console.log(data.id);
+      const data = await connection('billingcycle').update({ 
+        nome, mes, ano 
+      }).where('id', req.params.id);
+ 
+      res.json({"ok": data});
+    },
+
+    async delete(req, res){  
+
+      const data = await connection('billingcycle').delete().where('id', req.params.id);
+      console.log(req.body);
       res.json({"ok": data});
     },
 }

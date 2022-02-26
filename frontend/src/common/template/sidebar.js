@@ -7,8 +7,8 @@ const SideBar = (props) => {
     <aside className="main-sidebar sidebar-dark-primary elevation-4">
       <div className="brand-link d-flex justify-content-between align-items-center">
         <a  className="pushmenu" data-widget="pushmenu"  href="#" className="brand-link">
-          <img src="./dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3"/>
-          <span className="brand-text font-weight-light">AdminLTE 3</span>
+          <img src="./dist/img/LogoBrandsG.jpeg" alt="AdminLTE Logo" className="brand-image img-circle elevation-2"/>
+          <span className="brand-text font-weight-light">Geld</span>
         </a> 
       </div>
       <div className="sidebar">
